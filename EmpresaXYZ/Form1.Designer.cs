@@ -360,7 +360,7 @@ namespace EmpresaXYZ
             this.lblServiceSummary.Name = "lblServiceSummary";
             this.lblServiceSummary.Size = new System.Drawing.Size(171, 20);
             this.lblServiceSummary.TabIndex = 6;
-            this.lblServiceSummary.Text = "Servicios mostrados: 0";
+            this.lblServiceSummary.Text = "Servicios mostrados: 0 | Importe total (COP): $0";
             // 
             // dgvServices
             // 
@@ -415,11 +415,11 @@ namespace EmpresaXYZ
             // 
             // colServicePrice
             // 
-            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.Format = "C0";
             dataGridViewCellStyle2.NullValue = null;
             this.colServicePrice.DefaultCellStyle = dataGridViewCellStyle2;
             this.colServicePrice.DataPropertyName = "Price";
-            this.colServicePrice.HeaderText = "Precio";
+            this.colServicePrice.HeaderText = "Precio (COP)";
             this.colServicePrice.MinimumWidth = 6;
             this.colServicePrice.Name = "colServicePrice";
             this.colServicePrice.ReadOnly = true;
@@ -515,21 +515,22 @@ namespace EmpresaXYZ
             // 
             // nudServicePrice
             // 
-            this.nudServicePrice.DecimalPlaces = 2;
+            this.nudServicePrice.DecimalPlaces = 0;
             this.nudServicePrice.Increment = new decimal(new int[] {
-            10,
+            100000,
             0,
             0,
             0});
             this.nudServicePrice.Location = new System.Drawing.Point(25, 160);
             this.nudServicePrice.Maximum = new decimal(new int[] {
-            1000000,
+            100000000,
             0,
             0,
             0});
             this.nudServicePrice.Name = "nudServicePrice";
             this.nudServicePrice.Size = new System.Drawing.Size(150, 27);
             this.nudServicePrice.TabIndex = 5;
+            this.nudServicePrice.ThousandsSeparator = true;
             // 
             // lblServicePrice
             // 
@@ -538,7 +539,7 @@ namespace EmpresaXYZ
             this.lblServicePrice.Name = "lblServicePrice";
             this.lblServicePrice.Size = new System.Drawing.Size(48, 20);
             this.lblServicePrice.TabIndex = 4;
-            this.lblServicePrice.Text = "Precio";
+            this.lblServicePrice.Text = "Precio (COP)";
             // 
             // txtServiceDescription
             // 

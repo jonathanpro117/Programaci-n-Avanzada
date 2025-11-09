@@ -63,27 +63,12 @@ internal static class DatabaseInitializer
 
         var customers = new (string Name, string Email, string Phone)[]
         {
-            ("Ana García", "ana.garcia@xyz.com", "+34 600 123 456"),
-            ("Carlos Pérez", "carlos.perez@xyz.com", "+34 611 987 654"),
-            ("María López", "maria.lopez@xyz.com", "+34 622 456 789")
-        };
-
-        foreach (var (name, email, phone) in customers)
-        {
-            using var insert = connection.CreateCommand();
-            insert.Transaction = transaction;
-            insert.CommandText = @"INSERT INTO Customers (Name, Email, Phone) VALUES (@Name, @Email, @Phone);";
-            insert.Parameters.AddWithValue("@Name", name);
-            insert.Parameters.AddWithValue("@Email", email);
-            insert.Parameters.AddWithValue("@Phone", phone);
-            insert.ExecuteNonQuery();
-        }
-
-        var services = new (int CustomerId, string Description, decimal Price, DateTime ServiceDate)[]
-        {
-            (1, "Implementación de CRM", 1250.00m, DateTime.Today.AddDays(-15)),
-            (2, "Capacitación de personal", 480.00m, DateTime.Today.AddDays(-7)),
-            (3, "Consultoría estratégica", 890.00m, DateTime.Today.AddDays(10))
+            ("Ana García", "ana.garcia@xyz.com", "+57 310 456 7890"),
+            ("Carlos Pérez", "carlos.perez@xyz.com", "+57 315 234 5678"),
+            ("María López", "maria.lopez@xyz.com", "+57 601 234 5670")
+            (1, "Implementación de CRM", 5_375_000m, DateTime.Today.AddDays(-15)),
+            (2, "Capacitación de personal", 2_064_000m, DateTime.Today.AddDays(-7)),
+            (3, "Consultoría estratégica", 3_827_000m, DateTime.Today.AddDays(10))
         };
 
         foreach (var (customerId, description, price, serviceDate) in services)

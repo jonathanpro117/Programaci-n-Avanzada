@@ -1,3 +1,4 @@
+using System.Globalization;
 using EmpresaXYZ.Data;
 
 namespace EmpresaXYZ;
@@ -10,6 +11,10 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
+        var culture = new CultureInfo("es-CO");
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
+
         DatabaseInitializer.Initialize();
 
         // To customize application configuration such as set high DPI settings or default font,

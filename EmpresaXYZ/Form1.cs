@@ -161,7 +161,7 @@ public partial class Form1 : Form
         }
 
         var totalAmount = filtered.Sum(s => s.Price);
-        lblServiceSummary.Text = $"Servicios mostrados: {filtered.Count} / {_services.Count} | Importe total: {totalAmount:C}";
+        lblServiceSummary.Text = $"Servicios mostrados: {filtered.Count} / {_services.Count} | Importe total (COP): {totalAmount:C0}";
         dgvServices.ClearSelection();
         ClearServiceSelection();
     }
@@ -499,6 +499,23 @@ public partial class Form1 : Form
             return false;
         }
 
+        var sanitizedPhone = Regex.Replace(phone, @"[\\s\-\(\)]", string.Empty);
+        if (sanitizedPhone.StartsWith("+", StringComparison.Ordinal))
+        {
+            sanitizedPhone = sanitizedPhone[1..];
+        }
+
+        if (sanitizedPhone.StartsWith("57", StringComparison.Ordinal))
+        {
+            sanitizedPhone = sanitizedPhone[2..];
+        }
+
+        if (!Regex.IsMatch(sanitizedPhone, @"^(3\d{9}|60[1-9]\d{7})$"))
+        {
+            errorMessage = "Ingrese un teléfono colombiano válido (ejemplo: +57 310 123 4567).";
+            return false;
+        }
+
         customer = new Customer
         {
             Id = customerId ?? 0,
@@ -592,7 +609,7 @@ public partial class Form1 : Form
             {
                 EscapeCsvValue(service.CustomerName),
                 EscapeCsvValue(service.Description),
-                service.Price.ToString("F2", culture),
+                service.Price.ToString("F0", culture),
                 service.ServiceDate.ToString("yyyy-MM-dd", culture),
                 service.CreatedAt.ToString("yyyy-MM-dd HH:mm", culture)
             });
