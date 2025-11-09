@@ -63,9 +63,9 @@ internal static class DatabaseInitializer
 
         var customers = new (string Name, string Email, string Phone)[]
         {
-            ("Ana García", "ana.garcia@xyz.com", "+34 600 123 456"),
-            ("Carlos Pérez", "carlos.perez@xyz.com", "+34 611 987 654"),
-            ("María López", "maria.lopez@xyz.com", "+34 622 456 789")
+            ("Ana García", "ana.garcia@xyz.com", "+57 310 456 7890"),
+            ("Carlos Pérez", "carlos.perez@xyz.com", "+57 315 234 5678"),
+            ("María López", "maria.lopez@xyz.com", "+57 601 234 5670")
         };
 
         foreach (var (name, email, phone) in customers)

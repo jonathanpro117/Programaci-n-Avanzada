@@ -499,6 +499,23 @@ public partial class Form1 : Form
             return false;
         }
 
+        var sanitizedPhone = Regex.Replace(phone, @"[\\s\-\(\)]", string.Empty);
+        if (sanitizedPhone.StartsWith("+", StringComparison.Ordinal))
+        {
+            sanitizedPhone = sanitizedPhone[1..];
+        }
+
+        if (sanitizedPhone.StartsWith("57", StringComparison.Ordinal))
+        {
+            sanitizedPhone = sanitizedPhone[2..];
+        }
+
+        if (!Regex.IsMatch(sanitizedPhone, @"^(3\d{9}|60[1-9]\d{7})$"))
+        {
+            errorMessage = "Ingrese un teléfono colombiano válido (ejemplo: +57 310 123 4567).";
+            return false;
+        }
+
         customer = new Customer
         {
             Id = customerId ?? 0,
